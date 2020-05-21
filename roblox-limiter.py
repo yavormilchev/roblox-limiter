@@ -7,14 +7,19 @@ hostsPath = "D:\Windows\System32\drivers\etc\hosts"
 # Change the block and unblock hours as needed
 unblockAt = 15
 blockAt = 21
+blockDuringWeekend = False
 
 roblox = "\n0.0.0.0 roblox.com\n"
 wwwRoblox = "\n0.0.0.0 www.roblox.com\n"
 
 fileModified = False
 now = datetime.now()
-shouldUnblock = unblockAt <= now.hour < blockAt
+
+shouldUnblockWeekend = (not blockDuringWeekend) and now.weekday() > 4
+shouldUnblock = shouldUnblockWeekend or (unblockAt <= now.hour < blockAt)
 shouldBlock = not shouldUnblock
+
+print("Should unblock due to weekend" if shouldUnblockWeekend else "Should not unblock due to weekend")
 print("Should unblock" if shouldUnblock else "Should block")
 
 with open(hostsPath, 'r') as f:
