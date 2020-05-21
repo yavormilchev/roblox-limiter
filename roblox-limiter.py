@@ -2,7 +2,7 @@ import time
 from datetime import datetime
 
 # Change this to match your hosts file location
-hostsPath = "D:\Windows\System32\drivers\etc\hosts"
+hostsPath = "C:\Windows\System32\drivers\etc\hosts"
 
 # Change the block and unblock hours as needed
 unblockAt = 15
